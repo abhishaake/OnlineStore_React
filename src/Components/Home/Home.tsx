@@ -61,9 +61,7 @@ function Home() {
             onChange={(e)=>setSearchText(e.currentTarget.value)}
             className="search-Box__input"
           ></input>
-          <Link to="/products">
-            <button type="submit"></button>
-          </Link>
+            <button onClick={()=>clickHandler(searchText)} type="submit"></button>
         </div>
         <br></br>
 

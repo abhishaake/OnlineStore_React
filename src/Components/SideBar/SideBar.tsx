@@ -7,6 +7,7 @@ function SideBar() {
   const arrowAngleDown:string = 'fa fa-angle-down';
   const arrowAngleUp:string = 'fa fa-angle-up';
   const [price, setPricing] = useState(0);
+  const [name, setName] = useState('');
   const { params } = useParams();
   
 
@@ -29,11 +30,17 @@ function SideBar() {
   useEffect(() => {
     const paramArray = params?.split('&');
     var pricing:number = 100000;
+    var _name:string = '';
     if(paramArray){
+      if(paramArray[0]){
+        _name = paramArray[0];
+        setName(_name);
+      }
       if(paramArray[1]){
         pricing = parseInt(paramArray[1]);
         if(pricing===500) setPricing(1);
-        else setPricing(2);
+        else if(pricing===2000) setPricing(2);
+        else setPricing(0);
       }
 
     }
@@ -42,7 +49,7 @@ function SideBar() {
 
   function handleRequest(url:string,num:number){
     if(num===price){
-      window.location.href = '/products/';
+      window.location.href = '/products/' + name;
     }
     else{     const newUrl = '/products/' + url;
       window.location.href = newUrl;}
@@ -64,8 +71,8 @@ function SideBar() {
         <div id="price" className="sidebar__menu">
           <div id="sidebar-heading" className="sidebar__heading"> PRICE RANGE <span className="sidebar__arrow" onClick={()=>arrowChangeHandler('price')}><i className={arrowClass.price?arrowAngleDown:arrowAngleUp}></i></span></div>
           {arrowClass.price && <div id="pricelist" className="sidebar__list">
-            <div><input onClick={()=>handleRequest('&500',1)} className="sidebar__input" type="checkbox" checked={price===1}/>Under 500</div>
-            <div><input onClick={()=>handleRequest('&10000',2)}className="sidebar__input" type="checkbox" checked={price===2}/>1000 To 3000</div>
+            <div><input onClick={()=>handleRequest(name+'&500',1)} className="sidebar__input" type="checkbox" checked={price===1}/>Under 500</div>
+            <div><input onClick={()=>handleRequest(name+'&3000',2)}className="sidebar__input" type="checkbox" checked={price===2}/>1000 To 3000</div>
           </div>}
         </div>
         <div id="rating" className="sidebar__menu">

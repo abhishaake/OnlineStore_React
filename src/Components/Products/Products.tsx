@@ -9,6 +9,7 @@ import { useParams, useLocation} from "react-router-dom";
 function Products(){
   const { params } = useParams();
   const location = useLocation();
+  const [searchText, setSearchText] = useState("");
   const targetRef = useRef(null);
   const imgTag = useRef(new Array());
   const [isClick, setClick] = useState([false]);
@@ -17,6 +18,8 @@ function Products(){
   const [products, setProducts] = useState(new Array());
   const [curPage, setCurPage] = useState(0);
   const hideEl:object = {display: 'none'};
+  var name:string = '';
+  var pricing:number = 100000;
   const options = {
     method: 'GET',
     headers: {
@@ -37,8 +40,7 @@ function Products(){
 
   const fetchData = () =>{
     const paramArray = params?.split('&');
-    let name:string = '';
-    let pricing:number = 100000;
+    
     if(paramArray){
       if(paramArray[0])name = paramArray[0];
       if(paramArray[1])pricing = parseInt(paramArray[1]);
@@ -58,14 +60,14 @@ function Products(){
       for(let i=0;i<size;i++){
         let url:string = faker.image.urlLoremFlickr({ category: 'people' });
         imgArr.push(url);
-        if(name.length>0 && data[0].results[i].name.includes(name)){
+        if(name.length>0 && (data[0].results[i].name).toLowerCase().includes(name.toLowerCase())){
           if(!pricing || (pricing && data[0].results[i].price.value*8<=pricing)){
             res.push(data[0].results[i]);
           }
           
         }
         else if(pricing && data[0].results[i].price.value*8<=pricing){
-          if(name.length===0 || (name.length>0 && data[0].results[i].name.includes(name))){
+          if(name.length===0 || (name.length>0 && (data[0].results[i].name).toLowerCase().includes(name.toLowerCase()))){
             res.push(data[0].results[i]);
           }
         }
@@ -87,6 +89,9 @@ function Products(){
     .catch(error => {
       console.error('Error:', error);
     });
+  }
+  function clickHandler(url:string){
+    window.location.href = '/products/' + url + '&' + pricing;
   }
 
   useEffect(() => {
@@ -120,8 +125,8 @@ function Products(){
         <div className="products-bg">
           <SideBar />
           <div className="product-search-Box">
-            <input className="product-search-Box__input"></input>
-            <button type="submit"></button>
+            <input placeholder="Search" onChange={(e)=>setSearchText(e.currentTarget.value)} value={searchText} className="product-search-Box__input"></input>
+            <button onClick={()=>clickHandler(searchText)} type="submit"></button>
           </div>
 
           <div className="main">
