@@ -29,6 +29,10 @@ function Products(){
                 <img src={shirt}></img>
                 <br></br>
                 <span className="image-caption">Grey Shirt</span>
+                <br></br>
+                <span className="image-caption">Grey Shirt</span>
+                <br></br>
+                <span className="image-caption">Grey Shirt</span>
               </span>
               <span className="image-gallery-item">
               <div className="image-gallery-item__heart"><Heart isClick={isClick[1]} onClick={() => updateElement(1)} /></div>

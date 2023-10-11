@@ -59,7 +59,7 @@
     overflow-y: scroll;
     margin-left: 250px;
     padding: 20px;
-    top: 120px;
+    top: 100px;
     position: relative;
 
  }
@@ -74,16 +74,15 @@
   }
   
   .image-gallery-item {
-    position: relative;
     overflow: hidden;
     transition: transform 0.2s;
     padding-bottom: 20px;
 
     &__heart{
       position: relative;
-      z-index: 99;
-      top: -30px;
-      right: -145px;
+      z-index: 999;
+      padding-left: 150px;
+      top: -25px;
     }
   }
   
@@ -92,16 +91,13 @@
   }
   
   .image-gallery-item img {
+    margin-top: -100px;
     width: 220px;
     height: 250px;
     object-fit: cover;
-    position: relative;
-    top: -103px;
   }
   
   .image-caption {
-    position: relative;
-    top: -103px;
   }
   
   
