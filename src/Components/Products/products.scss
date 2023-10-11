@@ -17,6 +17,7 @@
     display: block;
 
     &__input{
+      min-width: 300px;
         width: 34%;
         height: 25px;
         border-radius: 12px;
@@ -55,7 +56,9 @@
     background-color: white;
 }
 .main {
-    height: 70vh;
+    min-width: 700px;
+    min-height: 70vh;
+    max-height: 90vh;
     overflow-y: scroll;
     margin-left: 250px;
     padding: 20px;
