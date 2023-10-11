@@ -23,7 +23,7 @@ function Products(){
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '4be795dbf0mshbcc1899b98cab17p18b9d7jsnb0960aab81c2',
+      'X-RapidAPI-Key': '1e9fff5be6msh6428cccd2862acdp1bbb95jsn7f3ad502e13c',
       'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
     }
   };
