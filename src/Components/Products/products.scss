@@ -6,6 +6,8 @@
 }
 
 .product-search-Box{
+  position: relative;
+  top: 30px;
     text-align: center;
     margin-bottom: 10px;
     flex-direction: column;
@@ -15,7 +17,7 @@
     display: block;
 
     &__input{
-        width: 37%;
+        width: 34%;
         height: 25px;
         border-radius: 12px;
         border-color: black;
@@ -53,6 +55,8 @@
     background-color: white;
 }
 .main {
+    height: 70vh;
+    overflow-y: scroll;
     margin-left: 250px; /* Same width as the sidebar */
     padding: 20px;
     top: 120px;

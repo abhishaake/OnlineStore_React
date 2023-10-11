@@ -19,6 +19,7 @@ function Home() {
           <input
             onClick={() => setShowSuggestionBox(true)}
             value={searchText}
+            onChange={(e)=>setSearchText(e.currentTarget.value)}
             className="search-Box__input"
           ></input>
           <Link to="/products">

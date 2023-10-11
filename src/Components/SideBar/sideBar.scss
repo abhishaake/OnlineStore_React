@@ -6,9 +6,58 @@
     height: 100%;
     width: 250px; 
     position: fixed; 
-    top: 200px; 
+    top: 132px; 
     left: 0;
     padding-top: 20px;
-    transition: 0.3s; 
-  }
+    transition: 0.3s;
+    padding-left: 25px;
 
+    &__main-heading{
+      padding-left: 25px;
+      font-size: 35px;
+    }
+
+    &__menu{
+      width: 100%;
+      height: auto;
+      margin: 20px 0;
+    }
+
+    &__input{
+      width: 16px;
+      height: 16px;
+      top: 4px;
+      position: relative;
+      margin: 5px 10px 5px 0;
+    }
+
+    &__heading{
+      padding-left: 25px;
+      font-weight: 600;
+    }
+
+    &__arrow{
+      float: right;
+      margin-right: 20px;
+    }
+    &__arrow:hover{
+      cursor: pointer;
+    }
+
+    &__list{
+      padding: 10px 0 5px 25px;
+    }
+
+    &__goldstar{
+      font-size: 25px;
+      position: relative;
+      top: 4px;
+      color: gold;
+    }
+    &__silverstar{
+      font-size: 25px;
+      position: relative;
+      top: 4px;
+      color: silver;
+    }
+  }
