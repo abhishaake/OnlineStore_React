@@ -78,6 +78,13 @@
     transition: transform 0.4s;
     padding-bottom: 20px;
 
+
+    &__goldstar{
+      font-size: 25px;
+      position: relative;
+      color: gold;
+    }
+
     &__heart{
       position: relative;
       z-index: 999;
@@ -116,6 +123,7 @@
   }
   
   .image-caption {
+    padding: 1px;
   }
   
   
