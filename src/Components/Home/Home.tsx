@@ -24,6 +24,10 @@ function Home() {
     }
   }
 
+  function clickHandler(url:string){
+    window.location.href = 'products/' + url;
+  }
+
   useEffect(() => {
     // Define the URL of the API you want to request
     const apiUrl1 = 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?country=us&lang=en&currentpage=0&pagesize=10&sortBy=newProduct';
@@ -73,7 +77,7 @@ function Home() {
               {trends.map((dataObj:any, index) => {
                 return (
                   <span className="suggestion-Box__grid__img">
-                    <img src={dataObj.images[0].baseUrl}></img>
+                    <img onClick={()=>clickHandler(dataObj.name)} src={dataObj.images[0].baseUrl}></img>
                     <span>{dataObj.name}</span>
                   </span>
                 );
@@ -87,7 +91,7 @@ function Home() {
               </span>
               {products.map((dataObj:any, index) => {
                 return (
-                    <span className="suggestion-Box__row__item">{dataObj.name}</span>
+                    <span onClick={()=>clickHandler(dataObj.name)} className="suggestion-Box__row__item">{dataObj.name}</span>
                 );
               })}
             </div>
