@@ -110,9 +110,6 @@
     }
   }
   
-  .image-gallery-item:hover {
-    transform: scale(1.05);
-  }
   
   .image-gallery-item img {
     cursor: pointer;
@@ -126,5 +123,8 @@
     padding: 1px;
   }
   
+  .image-caption-price {
+    text-decoration: line-through;
+  }
   
 

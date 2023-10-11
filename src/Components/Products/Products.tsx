@@ -1,17 +1,20 @@
 import SideBar from "../SideBar/SideBar";
 import "./products.scss";
-import shirt from "./Assets/shirt.jpg";
 import Heart from "react-animated-heart";
 import { useEffect,useRef,useState } from "react";
 import Loader from "../Loading-Page/Loader";
+import { faker } from '@faker-js/faker';
 
 function Products(){
+
   const targetRef = useRef(null);
+  const imgTag = useRef(new Array());
   const [isClick, setClick] = useState([false]);
   const [viewButton, setViewButton] = useState([false]);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [products, setProducts] = useState(new Array());
   const [curPage, setCurPage] = useState(0);
+  const hideEl:object = {display: 'none'};
   const options = {
     method: 'GET',
     headers: {
@@ -38,7 +41,15 @@ function Products(){
       fetch(apiUrl1,options).then(response => response.json()),
     ])
     .then(data => {
-      let size:number = data[0].results.size;
+      
+      let size:number = data[0].results.length;
+      let imgArr:string[]=[];
+      for(let i=0;i<size;i++){
+        let url:string = faker.image.urlLoremFlickr({ category: 'people' });
+        imgArr.push(url);
+      }
+      imgArr = [...imgTag.current,...imgArr];
+      imgTag.current = imgArr;
       let arr:Array<boolean> = new Array(size).fill(false);
       setClick([...isClick, ...arr]);
       setViewButton([...viewButton, ...arr]);
@@ -54,12 +65,13 @@ function Products(){
   }
 
   useEffect(() => {
-    fetchData();
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          // Perform the API call here
-          fetchData();
+          if(curPage<1) {
+            setLoading(true);
+            fetchData();
+          }
         }
       },
       { root: null, rootMargin: '0px', threshold: 1 }
@@ -94,14 +106,14 @@ function Products(){
                 return (
                   <span onMouseEnter={()=>viewChangeHandler(index,true)} onMouseLeave={()=>viewChangeHandler(index,false)} className="image-gallery-item">
                     <div className="image-gallery-item__heart"><Heart isClick={isClick[index]} onClick={() => updateElementLike(index)} /></div>
-                    <img  src={dataObj.images[0].baseUrl}></img>
-                    {viewButton[index] && <div id="image-view" className="image-gallery-item__view"> View Product</div>}
+                    <img  src={imgTag.current[index]}></img>
+                    <div style={viewButton[index]?{}:hideEl} id="image-view" className="image-gallery-item__view"> View Product</div>
                     <br></br>
-                    <span className="image-caption">{dataObj.name}</span>
+                    <span  className="image-caption">{dataObj.name}</span>
                     <br></br>
-                    <span className="image-caption">{dataObj.price.formattedValue}</span>
+                    <span className="image-caption"><span className="image-caption-price">Rs. {dataObj.price.value*9}</span> Rs. {dataObj.price.value*8}</span>
                     <br></br>
-                    <span className="image-gallery-item__goldstar">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+                    <span className="image-gallery-item__goldstar">&#9733; &#9733; &#9733; &#9733; &#9733; </span>(210) 
                   </span>
                 );
               })}
