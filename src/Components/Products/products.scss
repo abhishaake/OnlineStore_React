@@ -1,0 +1,105 @@
+.products-bg{
+    background-image: url("./Assets/whitebg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.product-search-Box{
+    text-align: center;
+    margin-bottom: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    margin: auto;
+    display: block;
+
+    &__input{
+        width: 37%;
+        height: 25px;
+        border-radius: 12px;
+        border-color: black;
+        border: ridge;
+        border-width: 2px;;
+        font-size: 150%;
+        padding: 10px;
+    }
+
+    button[type="submit"] {
+
+      text-indent: -999px;
+      overflow: hidden;
+      width: 60px;
+      padding-top: 35px;
+      padding-bottom: 20px;
+      margin-right: 30px;
+      margin-left: -90px;
+      border: 1px solid transparent;
+      border-radius: inherit;
+      background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+    
+    button[type="submit"]:hover {
+      opacity: 1;
+    }
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: white;
+}
+.main {
+    margin-left: 250px; /* Same width as the sidebar */
+    padding: 20px;
+    top: 120px;
+    position: relative;
+ }
+
+
+ /* Image Gallery Container */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px;
+    padding: 30px;
+  }
+  
+  /* Image Gallery Items */
+  .image-gallery-item {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+    padding-bottom: 20px;
+  }
+  
+  .image-gallery-item:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Image Styling */
+  .image-gallery-item img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  /* Caption for Images */
+  .image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    color: white;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  /* Optional: Add hover effect on captions */
+  .image-gallery-item:hover .image-caption {
+      }
+  
+
