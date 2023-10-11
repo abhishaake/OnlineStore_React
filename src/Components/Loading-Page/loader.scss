@@ -1,0 +1,38 @@
+
+.loading-screen {
+    background-image: url("../../bg3.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+  .loading-screen::before {
+    content: '';
+    background: inherit;
+    filter: blur(10px); /* Adjust the blur intensity */
+    backdrop-filter: blur(10px); /* Adjust the blur intensity */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  } 
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.5); /* Spinner border color and opacity */
+    border-top: 4px solid #95037a; /* Spinner foreground color */
+    border-radius: 50%; /* Create a circle */
+    width: 100px; /* Spinner width */
+    height: 100px; /* Spinner height */
+    animation: spin 2s linear infinite; /* Animation for rotation */
+    margin: 0 auto; /* Center the spinner horizontally */
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    right: 40%;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
