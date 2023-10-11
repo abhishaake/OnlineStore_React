@@ -4,9 +4,11 @@ import Heart from "react-animated-heart";
 import { useEffect,useRef,useState } from "react";
 import Loader from "../Loading-Page/Loader";
 import { faker } from '@faker-js/faker';
+import { useParams, useLocation} from "react-router-dom";
 
 function Products(){
-
+  const { params } = useParams();
+  const location = useLocation();
   const targetRef = useRef(null);
   const imgTag = useRef(new Array());
   const [isClick, setClick] = useState([false]);
@@ -34,6 +36,14 @@ function Products(){
   }
 
   const fetchData = () =>{
+    const paramArray = params?.split('&');
+    let name:string = '';
+    let pricing:number = 100000;
+    if(paramArray){
+      if(paramArray[0])name = paramArray[0];
+      if(paramArray[1])pricing = parseInt(paramArray[1]);
+    }
+    
     console.log("fetching...");
     const apiUrl1 = 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?country=us&lang=en&currentpage='+curPage+'&pagesize=8&sortBy=newProduct';
     setCurPage(curPage+1);
@@ -44,16 +54,31 @@ function Products(){
       
       let size:number = data[0].results.length;
       let imgArr:string[]=[];
+      let res:string[]=[];
       for(let i=0;i<size;i++){
         let url:string = faker.image.urlLoremFlickr({ category: 'people' });
         imgArr.push(url);
+        if(name.length>0 && data[0].results[i].name.includes(name)){
+          if(!pricing || (pricing && data[0].results[i].price.value*8<=pricing)){
+            res.push(data[0].results[i]);
+          }
+          
+        }
+        else if(pricing && data[0].results[i].price.value*8<=pricing){
+          if(name.length==0 || (name.length>0 && data[0].results[i].name.includes(name))){
+            res.push(data[0].results[i]);
+          }
+        }
+        else if(!pricing && name.length==0){
+            res.push(data[0].results[i]);
+        }
       }
       imgArr = [...imgTag.current,...imgArr];
       imgTag.current = imgArr;
       let arr:Array<boolean> = new Array(size).fill(false);
       setClick([...isClick, ...arr]);
       setViewButton([...viewButton, ...arr]);
-      let res:Array<any> = [...products, ...data[0].results];
+      res = [...products, ...res];
       setProducts([...products, ...res]); 
     })
     .then(()=>{
@@ -87,14 +112,13 @@ function Products(){
       }
     };
 
-  }, [isLoading]);
+  }, [location.search]);
 
     return (
       <>
        {isLoading? <Loader /> :
         <div className="products-bg">
           <SideBar />
-
           <div className="product-search-Box">
             <input className="product-search-Box__input"></input>
             <button type="submit"></button>
