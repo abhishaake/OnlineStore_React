@@ -57,53 +57,52 @@
 .main {
     height: 70vh;
     overflow-y: scroll;
-    margin-left: 250px; /* Same width as the sidebar */
+    margin-left: 250px;
     padding: 20px;
     top: 120px;
     position: relative;
+
  }
 
 
- /* Image Gallery Container */
 .image-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 30px;
     padding: 30px;
+    margin-left: 60px;
   }
   
-  /* Image Gallery Items */
   .image-gallery-item {
     position: relative;
     overflow: hidden;
     transition: transform 0.2s;
     padding-bottom: 20px;
+
+    &__heart{
+      position: relative;
+      z-index: 99;
+      top: -30px;
+      right: -145px;
+    }
   }
   
   .image-gallery-item:hover {
     transform: scale(1.05);
   }
   
-  /* Image Styling */
   .image-gallery-item img {
-    width: 250px;
+    width: 220px;
     height: 250px;
     object-fit: cover;
+    position: relative;
+    top: -103px;
   }
   
-  /* Caption for Images */
   .image-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 250px;
-    color: white;
-    padding: 5px;
-    text-align: center;
+    position: relative;
+    top: -103px;
   }
   
-  /* Optional: Add hover effect on captions */
-  .image-gallery-item:hover .image-caption {
-      }
   
 
