@@ -75,7 +75,7 @@
   
   .image-gallery-item {
     overflow: hidden;
-    transition: transform 0.2s;
+    transition: transform 0.4s;
     padding-bottom: 20px;
 
     &__heart{
@@ -84,6 +84,23 @@
       padding-left: 150px;
       top: -25px;
     }
+
+    &__view{
+      font-size: large;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      width: 220px;
+      margin-top: -40px;
+      height: 40px;
+      background: rgba(136, 156, 243, 0.8 );
+      color: white;
+      position: relative;
+    }
+    &__view:hover{
+      cursor: pointer;
+      background: rgba(136, 156, 243, 0.9 );
+    }
   }
   
   .image-gallery-item:hover {
@@ -91,6 +108,7 @@
   }
   
   .image-gallery-item img {
+    cursor: pointer;
     margin-top: -100px;
     width: 220px;
     height: 250px;
