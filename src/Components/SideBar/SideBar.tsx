@@ -44,7 +44,7 @@ function SideBar() {
     if(num===price){
       window.location.href = '/products/';
     }
-    else{     const newUrl = url;
+    else{     const newUrl = '/products/' + url;
       window.location.href = newUrl;}
     
     }
