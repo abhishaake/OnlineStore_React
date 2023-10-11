@@ -1,6 +1,6 @@
 import { useEffect,useState } from "react";
 import "./sideBar.scss";
-import { useParams,Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function SideBar() {
 
@@ -28,13 +28,11 @@ function SideBar() {
   }
   useEffect(() => {
     const paramArray = params?.split('&');
-    var name:string = '';
     var pricing:number = 100000;
     if(paramArray){
-      if(paramArray[0])name = paramArray[0];
       if(paramArray[1]){
         pricing = parseInt(paramArray[1]);
-        if(pricing==500) setPricing(1);
+        if(pricing===500) setPricing(1);
         else setPricing(2);
       }
 
@@ -43,7 +41,7 @@ function SideBar() {
   }, []);
 
   function handleRequest(url:string,num:number){
-    if(num==price){
+    if(num===price){
       window.location.href = '/products/';
     }
     else{     const newUrl = url;
@@ -66,8 +64,8 @@ function SideBar() {
         <div id="price" className="sidebar__menu">
           <div id="sidebar-heading" className="sidebar__heading"> PRICE RANGE <span className="sidebar__arrow" onClick={()=>arrowChangeHandler('price')}><i className={arrowClass.price?arrowAngleDown:arrowAngleUp}></i></span></div>
           {arrowClass.price && <div id="pricelist" className="sidebar__list">
-            <div><input onClick={()=>handleRequest('&500',1)} className="sidebar__input" type="checkbox" checked={price==1}/>Under 500</div>
-            <div><input onClick={()=>handleRequest('&10000',2)}className="sidebar__input" type="checkbox" checked={price==2}/>1000 To 3000</div>
+            <div><input onClick={()=>handleRequest('&500',1)} className="sidebar__input" type="checkbox" checked={price===1}/>Under 500</div>
+            <div><input onClick={()=>handleRequest('&10000',2)}className="sidebar__input" type="checkbox" checked={price===2}/>1000 To 3000</div>
           </div>}
         </div>
         <div id="rating" className="sidebar__menu">

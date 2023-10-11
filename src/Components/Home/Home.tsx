@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./home.scss";
-import shirt from "./Assets/shirt.jpg";
 import { Link } from "react-router-dom";
 import Loader from "../Loading-Page/Loader";
 
@@ -77,7 +76,7 @@ function Home() {
               {trends.map((dataObj:any, index) => {
                 return (
                   <span className="suggestion-Box__grid__img">
-                    <img onClick={()=>clickHandler(dataObj.name)} src={dataObj.images[0].baseUrl}></img>
+                    <img alt='' onClick={()=>clickHandler(dataObj.name)} src={dataObj.images[0].baseUrl}></img>
                     <span>{dataObj.name}</span>
                   </span>
                 );

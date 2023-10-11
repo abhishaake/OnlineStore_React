@@ -65,11 +65,11 @@ function Products(){
           
         }
         else if(pricing && data[0].results[i].price.value*8<=pricing){
-          if(name.length==0 || (name.length>0 && data[0].results[i].name.includes(name))){
+          if(name.length===0 || (name.length>0 && data[0].results[i].name.includes(name))){
             res.push(data[0].results[i]);
           }
         }
-        else if(!pricing && name.length==0){
+        else if(!pricing && name.length===0){
             res.push(data[0].results[i]);
         }
       }
@@ -130,7 +130,7 @@ function Products(){
                 return (
                   <span onMouseEnter={()=>viewChangeHandler(index,true)} onMouseLeave={()=>viewChangeHandler(index,false)} className="image-gallery-item">
                     <div className="image-gallery-item__heart"><Heart isClick={isClick[index]} onClick={() => updateElementLike(index)} /></div>
-                    <img  src={imgTag.current[index]}></img>
+                    <img alt='' src={imgTag.current[index]}></img>
                     <div style={viewButton[index]?{}:hideEl} id="image-view" className="image-gallery-item__view"> View Product</div>
                     <br></br>
                     <span  className="image-caption">{dataObj.name}</span>

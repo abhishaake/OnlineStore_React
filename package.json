@@ -41,10 +41,11 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^6.16.0",
-    "sass": "^1.69.1",
-    "intersection-observer": "^0.12.2",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@faker-js/faker": "^8.1.0",
-    "react-animated-heart": "^0.0.8"
+    "intersection-observer": "^0.12.2",
+    "react-animated-heart": "^0.0.8",
+    "react-router-dom": "^6.16.0",
+    "sass": "^1.69.1"
   }
 }
