@@ -5,17 +5,6 @@ import "./header.scss";
 function Header() {
   return (
     <>
-      <header className="header">
-        <div className="header__content">
-          <nav className="header__content__nav">
-            <ul>
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
       <Outlet />
     </>
   );
