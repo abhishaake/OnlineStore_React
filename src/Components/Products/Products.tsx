@@ -47,7 +47,7 @@ function Products(){
     }
     
     console.log("fetching...");
-    const apiUrl1 = 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?country=us&lang=en&currentpage='+curPage+'&pagesize=20&sortBy=newProduct';
+    const apiUrl1 = 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?country=us&lang=en&currentpage='+curPage+'&pagesize=30&sortBy=newProduct';
     setCurPage(curPage+1);
     Promise.all([
       fetch(apiUrl1,options).then(response => response.json()),
@@ -68,6 +68,8 @@ function Products(){
         }
         else if(pricing && data[0].results[i].price.value*8<=pricing){
           if(name.length===0 || (name.length>0 && (data[0].results[i].name).toLowerCase().includes(name.toLowerCase()))){
+            if(pricing===3000 && data[0].results[i].price.value*8<500) continue;
+
             res.push(data[0].results[i]);
           }
         }
@@ -98,7 +100,7 @@ function Products(){
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          if(curPage<4) {
+          if(curPage<2) {
             setLoading(true);
             fetchData();
           }

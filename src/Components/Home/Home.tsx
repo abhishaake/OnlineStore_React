@@ -7,8 +7,8 @@ function Home() {
   const [showSuggestionBox, setShowSuggestionBox] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-  const [trends, setTrends] = useState([]);
+  const [products, setProducts] = useState([{name:''}]);
+  const [trends, setTrends] = useState([{name:''}]);
   const hideEl:object = {display: 'none'};
   const options = {
     method: 'GET',
@@ -28,15 +28,15 @@ function Home() {
   }
 
   useEffect(() => {
-    // Define the URL of the API you want to request
-    const apiUrl1 = 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?country=us&lang=en&currentpage=0&pagesize=10&sortBy=newProduct';
+    const apiUrl1 = 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list?country=us&lang=en&pagesize=30&sortBy=newProduct&currentpage=0';
 
     Promise.all([
       fetch(apiUrl1,options).then(response => response.json()),
     ])
     .then(data => {
-      const slicedData1 = data[0].results.slice(0,5);
-      const slicedData2 = data[0].results.slice(5);
+      const size = data[0].results.length;
+      const slicedData1 = data[0].results.slice(size-5,size);
+      const slicedData2 = data[0].results;
       setProducts(slicedData1); 
       setTrends(slicedData2);
     })
@@ -53,7 +53,7 @@ function Home() {
     <>
     {isLoading? <Loader /> : 
       <div className="bg">
-        <div onClick={() => outsideClickHandler()} className="search-Box">
+        <div className="search-Box">
           <input
             onClick={() => setShowSuggestionBox(true)}
             value={searchText}
@@ -71,7 +71,15 @@ function Home() {
                 Latest Trends
               </span>
               <div className="suggestion-Box__grid">
-              {trends.map((dataObj:any, index) => {
+              {/* {trends.map((dataObj:any, index) => {
+                return (
+                  <span className="suggestion-Box__grid__img">
+                    <img alt='' onClick={()=>clickHandler(dataObj.name)} src={dataObj.images[0].baseUrl}></img>
+                    <span>{dataObj.name}</span>
+                  </span>
+                );
+              })} */}
+              {((trends.filter(el =>{ if(searchText.length>=3) return (el.name.toLowerCase()).includes(searchText.toLowerCase()); else return true; })).splice(0,5)).map((dataObj:any, index) => {
                 return (
                   <span className="suggestion-Box__grid__img">
                     <img alt='' onClick={()=>clickHandler(dataObj.name)} src={dataObj.images[0].baseUrl}></img>
